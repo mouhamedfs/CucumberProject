@@ -2,25 +2,30 @@ package agiltoo.stepdefs;
 
 import agiltoo.commun.Common;
 import io.cucumber.java.en.And;
+import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 import org.openqa.selenium.By;
 
-public class LivraisonManagement extends Common {
-    @And("i can access on the admin page")
-    public void iCanAccessOnTheAdminPage() {
-        System.out.println("Assert passed");
-    }
+import java.time.Duration;
 
-    @And("i click on Livraison on the admin menu")
+public class LivraisonManagement extends Common {
+
+    @Given("I can access to the admin")
+    public void iCanAccessToTheAdmin() {
+        driver.get(adminUrl);
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+    }
+    @When("i click on Livraison on the admin menu")
     public void iClickOnLivraisonOnTheAdminMenu() {
-        driver.findElement(By.xpath("//*[@id=\"header_infos\"]/i")).click();
+        driver.findElement(By.id("subtab-AdminParentShipping")).click();
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
     }
 
     @And("i click on Transporteurs side")
     public void iClickOnTransporteursSide() {
-        driver.findElement(By.linkText("#collapse-50")).click();
-        //driver.findElement(By.xpath("//*[@id=\"subtab-AdminCarriers\"]/a")).click();
-
+        driver.findElement(By.id("subtab-AdminCarriers")).click();
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
     }
 
     @Then("i should access to the livraisons admin page")

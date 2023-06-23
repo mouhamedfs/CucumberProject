@@ -6,6 +6,8 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.openqa.selenium.By;
 
+import java.time.Duration;
+
 public class AdminLogin extends Common {
     @Given("I can access to the admin page connexion")
     public void iCanAccessToTheAdminPageConnexion() {
@@ -21,8 +23,7 @@ public class AdminLogin extends Common {
     }
 
     @Then("I can be successfully to the admin page dashboard")
-    public void iCanBeSuccessfullyToTheAdminPageDashboard() {
-        String title = driver.getTitle();
-        System.out.println(title);
+    public void iCanBeSuccessfullyToTheAdminPageDashboard() throws InterruptedException {
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
     }
 }
