@@ -1,5 +1,6 @@
 package purse.stepdefs;
 
+import purse.api.ValidateAssured;
 import purse.commun.Common;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
@@ -10,20 +11,20 @@ import org.openqa.selenium.By;
 import java.time.Duration;
 
 public class Contact extends Common {
-
+    ValidateAssured assured = new ValidateAssured();
     @Given("I can access to the admin")
-    public void iCanAccessToTheAdmin() {
+    public void iCanAccessToTheAdmin() throws InterruptedException {
         driver.get(clientURL);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
     }
 
     @When("I enter {string} and {string} and {string} and {string} and {string} and {string} and {string}")
     public void iEnterAndAndAndAndAndAnd(String gender, String firstname, String lastname, String socity, String phone, String title, String message) {
-        driver.findElement(By.id("gender")).sendKeys(gender);
+        driver.findElement(By.id("gender")).sendKeys(assured.getPrenom());
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
         driver.findElement(By.id("first-name")).sendKeys(firstname);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
-        driver.findElement(By.id("last-name")).sendKeys(lastname);
+        driver.findElement(By.id("last-name")).sendKeys(assured.getLastName());
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
         driver.findElement(By.id("company")).sendKeys(socity);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
@@ -31,7 +32,7 @@ public class Contact extends Common {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
         driver.findElement(By.id("message-title")).sendKeys(title);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
-        driver.findElement(By.id("message")).sendKeys(message);
+        driver.findElement(By.id("message")).sendKeys(assured.getText());
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
     }
 

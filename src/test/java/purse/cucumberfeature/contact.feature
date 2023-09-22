@@ -1,4 +1,6 @@
+
 Feature: Delivery access management
+    @ContactForm
     Scenario Outline:
     Given I can access to the admin
     When I enter "<gender>" and "<firstname>" and "<lastname>" and "<socity>" and "<phone>" and "<title>" and "<message>"
